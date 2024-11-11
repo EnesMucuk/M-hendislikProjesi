@@ -1,0 +1,538 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+      
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+        double Depo_benzin95 = 0, Depo_benzin97 = 0, Depo_dizel = 0, Depo_eurodizel = 0, Depo_lpg = 0;
+        double Ekle_benzin95 = 0, Ekle_benzin97 = 0, Ekle_dizel = 0, Ekle_eurodizel = 0, Ekle_lpg = 0;
+
+        public object Fiyat_bilgileri { get; private set; }
+
+        double Fiyat_benzin95 = 0, Fiyat_benzin97 = 0, Fiyat_dizel = 0, Fiyat_eurodizel = 0, Fiyat_lpg = 0;
+        double Satis_benzin95 = 0, Satis_benzin97 = 0, Satis_dizel = 0, Satis_eurodizel = 0, Satis_lpg = 0;
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if(comboBox1.Text=="Benzin 95 Oktan")
+            {
+                numericUpDown1.Enabled = true;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false; 
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+            }
+
+            else if (comboBox1.Text == "Benzin 97 Oktan")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = true;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+            }
+
+            else if (comboBox1.Text == "Dizel")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = true;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+            }
+
+            else if (comboBox1.Text == "Eurodizel")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = true;
+                numericUpDown5.Enabled = false;
+            }
+
+            else if (comboBox1.Text == "LPG")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = true;
+            }
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;   
+            numericUpDown3.Value = 0;
+            numericUpDown4.Value = 0;
+            numericUpDown5.Value = 0;
+            label22.Text = "_______";
+     
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Fiyat_benzin95=Fiyat_benzin95+(Fiyat_benzin95*Convert.ToDouble(textBox1.Text) / 100);
+                fiyat_bilgileri[0]=Convert.ToString(Fiyat_benzin95);
+
+            }
+            catch 
+            {
+                textBox1.Text = "0";
+            }
+
+
+            try
+            {
+                Fiyat_benzin97 = Fiyat_benzin97 + (Fiyat_benzin97 * Convert.ToDouble(textBox2.Text) / 100);
+                fiyat_bilgileri[1] = Convert.ToString(Fiyat_benzin97);
+
+            }
+            catch
+            {
+                textBox2.Text = "0";
+            }
+
+
+            try
+            {
+                Fiyat_dizel = Fiyat_dizel + (Fiyat_dizel * Convert.ToDouble(textBox3.Text) / 100);
+                fiyat_bilgileri[2] = Convert.ToString(Fiyat_dizel);
+
+            }
+            catch
+            {
+                textBox3.Text = "0";
+            }
+
+
+            try
+            {
+                Fiyat_eurodizel = Fiyat_eurodizel + (Fiyat_eurodizel * Convert.ToDouble(textBox4.Text) / 100);
+                fiyat_bilgileri[3] = Convert.ToString(Fiyat_eurodizel);
+
+            }
+            catch
+            {
+                textBox4.Text = "0";
+            }
+
+
+            try
+            {
+                Fiyat_lpg = Fiyat_lpg + (Fiyat_lpg * Convert.ToDouble(textBox5.Text) / 100);
+                fiyat_bilgileri[4] = Convert.ToString(Fiyat_lpg);
+
+            }
+            catch
+            {
+                textBox5.Text = "0";
+            }
+            System.IO.File.WriteAllLines(Application.StartupPath + "\\fiyat.txt", fiyat_bilgileri);
+
+            txt_fiyatoku();
+            txt_fiyatyaz();
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Satis_benzin95 = double.Parse(numericUpDown1.Value.ToString());
+            Satis_benzin97=double.Parse(numericUpDown2.Value.ToString());
+            Satis_dizel=double.Parse(numericUpDown3.Value.ToString());
+            Satis_eurodizel=double.Parse(numericUpDown4.Value.ToString());
+            Satis_lpg=double.Parse(numericUpDown5.Value.ToString());
+
+            if(numericUpDown1.Enabled==true)
+            {
+                Depo_benzin95 = Depo_benzin95 - Satis_benzin95;
+                label22.Text = Convert.ToString(Fiyat_benzin95 * Satis_benzin95);
+            }
+
+           else if (numericUpDown2.Enabled == true)
+            {
+                Depo_benzin97 = Depo_benzin97 - Satis_benzin97;
+                label22.Text = Convert.ToString(Fiyat_benzin97 * Satis_benzin97);
+            }
+
+            else if (numericUpDown3.Enabled == true)
+            {
+                Depo_dizel = Depo_dizel - Satis_dizel;
+                label22.Text = Convert.ToString(Fiyat_dizel * Satis_dizel);
+            }
+
+            else if (numericUpDown4.Enabled == true)
+            {
+                Depo_eurodizel = Depo_eurodizel - Satis_eurodizel;
+                label22.Text = Convert.ToString(Fiyat_eurodizel * Satis_eurodizel);
+            }
+
+            else if (numericUpDown5.Enabled == true)
+            {
+                Depo_lpg = Depo_lpg - Satis_lpg;
+                label22.Text = Convert.ToString(Fiyat_lpg * Satis_lpg);
+            }
+
+            depo_bilgileri[0] = Convert.ToString(Depo_benzin95);
+            depo_bilgileri[1] = Convert.ToString(Depo_benzin97);
+            depo_bilgileri[2] = Convert.ToString(Depo_dizel);
+            depo_bilgileri[3] = Convert.ToString (Depo_eurodizel);
+            depo_bilgileri[4] = Convert.ToString(Depo_lpg);
+
+            System.IO.File.WriteAllLines(Application.StartupPath+ "\\depos.txt",depo_bilgileri);
+
+            txt_depo_bilgi();
+            txt_depo_yazici();
+            proggressbar_new();
+            numeric_kalan();
+
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;
+            numericUpDown3.Value = 0;
+            numericUpDown4.Value = 0;
+            numericUpDown5.Value = 0;
+
+
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Ekle_benzin95 = Convert.ToDouble(textBox6.Text);
+                if (1000 < Depo_benzin95 + Ekle_benzin95)
+                {
+                    textBox6.Text = "Geçerli değerler giriniz.";
+                }
+                else
+                {
+                    depo_bilgileri[0] = Convert.ToString(Depo_benzin95 + Ekle_benzin95);
+                }
+            }
+
+            catch
+            {
+
+                textBox6.Text = "Sayi Giriniz";
+
+            }
+
+
+
+            try
+            {
+                Ekle_benzin97 = Convert.ToDouble(textBox7.Text);
+                if (1000 < Depo_benzin97 + Ekle_benzin97)
+                {
+                    textBox7.Text = "Geçerli değerler giriniz.";
+                }
+                else
+                {
+                    depo_bilgileri[1] = Convert.ToString(Depo_benzin97 + Ekle_benzin97);
+                }
+            }
+            catch
+            {
+
+                textBox7.Text = "Sayi Giriniz";
+
+            }
+
+
+            try
+            {
+                Ekle_dizel = Convert.ToDouble(textBox8.Text);
+                if (1000 < Depo_dizel + Ekle_dizel)
+                {
+                    textBox8.Text = "Geçerli değerler giriniz.";
+                }
+                else
+                {
+                    depo_bilgileri[2] = Convert.ToString(Depo_dizel + Ekle_dizel);
+                }
+            }
+
+
+
+            catch
+            {
+
+                textBox8.Text = "Sayi Giriniz";
+
+            }
+
+
+
+            try
+            {
+                Ekle_eurodizel = Convert.ToDouble(textBox9.Text);
+                if (1000 < Depo_eurodizel + Ekle_eurodizel)
+                {
+                    textBox9.Text = "Geçerli değerler giriniz.";
+                }
+                else
+                {
+                    depo_bilgileri[3] = Convert.ToString(Depo_eurodizel + Ekle_eurodizel);
+                }
+            }
+
+
+
+
+            catch
+            {
+
+                textBox9.Text = "Sayi Giriniz";
+
+            }
+
+
+
+            try
+            {
+                Ekle_lpg = Convert.ToDouble(textBox10.Text);
+                if (1000 < Depo_lpg + Ekle_lpg)
+                {
+                    textBox10.Text = "Geçerli değerler giriniz.";
+                }
+                else
+                {
+                    depo_bilgileri[4] = Convert.ToString(Depo_lpg + Ekle_lpg);
+                }
+            }
+
+
+
+
+            catch
+            {
+
+                textBox10.Text = "Sayı Giriniz";
+
+            }
+
+            System.IO.File.WriteAllLines(Application.StartupPath + "\\depos.txt", depo_bilgileri);
+            txt_depo_bilgi();
+            txt_depo_yazici();
+            proggressbar_new();
+            numeric_kalan();
+
+
+            textBox6.Clear();
+            textBox7.Clear();
+            textBox8.Clear();   
+            textBox9.Clear();
+            textBox10.Clear();
+            
+        }
+
+        string[] depo_bilgileri;
+        string[] fiyat_bilgileri;
+
+        private void txt_depo_bilgi()
+        {
+            depo_bilgileri = System.IO.File.ReadAllLines(Application.StartupPath + "\\depos.txt");
+            Depo_benzin95 = Convert.ToDouble(depo_bilgileri[0]);
+            Depo_benzin97 = Convert.ToDouble(depo_bilgileri[1]);
+            Depo_dizel = Convert.ToDouble(depo_bilgileri[2]);
+            Depo_eurodizel = Convert.ToDouble(depo_bilgileri[3]);
+            Depo_lpg = Convert.ToDouble(depo_bilgileri[4]);
+        }
+        private void txt_depo_yazici()
+        {
+            label6.Text = Depo_benzin95.ToString("N");
+            label7.Text = Depo_benzin97.ToString("N");
+            label8.Text=Depo_dizel.ToString("N");
+            label9.Text=Depo_eurodizel.ToString("N");
+            label10.Text=Depo_lpg.ToString("N");
+
+        }
+        private void txt_fiyatoku()
+        {
+            fiyat_bilgileri = System.IO.File.ReadAllLines(Application.StartupPath + "\\fiyat.txt");
+            Fiyat_benzin95 = Convert.ToDouble(fiyat_bilgileri[0]);
+            Fiyat_benzin97 = Convert.ToDouble(fiyat_bilgileri[1]);
+            Fiyat_dizel = Convert.ToDouble(fiyat_bilgileri[2]);
+            Fiyat_eurodizel = Convert.ToDouble(fiyat_bilgileri[3]);
+            Fiyat_lpg = Convert.ToDouble(fiyat_bilgileri[4]);
+        }
+
+        private void txt_fiyatyaz()
+        {
+            label11.Text=Fiyat_benzin95.ToString("N");
+            label12.Text=Fiyat_benzin97.ToString("N");  
+            label13.Text=Fiyat_dizel.ToString("N");
+            label14.Text=Fiyat_eurodizel.ToString("N"); 
+            label15.Text=Fiyat_lpg.ToString("N");
+
+        }
+        private void proggressbar_new()
+        {
+            progressBar1.Value=Convert.ToInt16(Depo_benzin95);
+            progressBar2.Value=Convert.ToInt16(Depo_benzin97);
+            progressBar3.Value = Convert.ToInt16(Depo_dizel);
+            progressBar4.Value = Convert.ToInt16(Depo_eurodizel);
+            progressBar5.Value = Convert.ToInt16(Depo_lpg);
+        }
+        private void numeric_kalan()
+        {
+            numericUpDown1.Maximum=decimal.Parse(Depo_benzin95.ToString());
+            numericUpDown2.Maximum=decimal.Parse(Depo_benzin97.ToString());
+            numericUpDown3.Maximum=decimal.Parse(Depo_dizel.ToString());
+            numericUpDown4.Maximum = decimal.Parse(Depo_eurodizel.ToString());
+            numericUpDown5.Maximum=decimal.Parse(Depo_lpg.ToString());
+        }
+        
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            progressBar1.Maximum = 1000;
+            progressBar2.Maximum = 1000;
+            progressBar3.Maximum = 1000;
+            progressBar4.Maximum = 1000;
+            progressBar5.Maximum = 1000;
+         
+            txt_depo_bilgi();
+            txt_depo_yazici();
+            txt_fiyatoku();
+            txt_fiyatyaz();
+            proggressbar_new();
+            numeric_kalan();
+
+            string[] yakit_cesitleri = { "Benzin 95 Oktan", "Benzin 97 Oktan", "Dizel", "Eurodizel", "LPG" };
+            comboBox1.Items.AddRange(yakit_cesitleri);
+
+            numericUpDown1.Enabled = false;
+            numericUpDown2.Enabled = false;
+            numericUpDown3.Enabled = false;
+            numericUpDown4.Enabled = false;
+            numericUpDown5.Enabled = false;
+
+            numericUpDown1.DecimalPlaces = 2;
+            numericUpDown2.DecimalPlaces = 2;
+            numericUpDown3.DecimalPlaces = 2;
+            numericUpDown4.DecimalPlaces = 2;
+            numericUpDown5.DecimalPlaces = 2;
+
+            numericUpDown1.Increment = 0.1M;
+            numericUpDown2.Increment = 0.1M;
+            numericUpDown3.Increment = 0.1M;
+            numericUpDown4.Increment = 0.1M;
+            numericUpDown5.Increment = 0.1M;
+
+
+
+
+        }
+        
+        
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hScrollBar3_Scroll(object sender, ScrollEventArgs e)
+        {
+                   }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
